@@ -1,0 +1,33 @@
+﻿body {
+}
+
+.main-box{
+    position:relative;
+   width:70vw;
+    height:100vh;
+    background-color:cyan;
+    display:flex;
+    justify-content:center;
+    align-content:center;
+    border-radius:30px;
+   
+}
+.create-button {
+    position:relative;
+    width:20vw;
+    height:8vh;
+    margin: auto;
+    font-size:25px;
+    display:flex;
+    justify-content:center;
+}
+/*a, a:visited, a:hover, a:active {
+    color: inherit;
+}*/
+.main-link,.main-link:visited,.main-link:hover,.main-link:active{
+    position:relative;
+    text-decoration:none;
+    color:white;
+    margin:auto;
+
+}

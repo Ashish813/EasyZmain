@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html ng-app="myMainApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="~/css/CommonLayout.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/all.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/all.min.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/brands.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/brands.min.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/fontawesome.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/fontawesome.min.css" rel="stylesheet" />
+
+    <link href="~/css/FontAwesomeCss/regular.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/regular.min.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/solid.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/solid.min.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/svg-with-js.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/svg-with-js.min.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/v4-shims.css" rel="stylesheet" />
+    <link href="~/css/FontAwesomeCss/v4-shims.min.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+    <script src="~/Scripts/bootstrap.js"></script> <!--version 5 and all css and js is also replace by version 5 css and js-->
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/jquery3.6.0.js"></script>
+    <script src="~/Mscripts/CommonLayout.js"></script>
+
+
+
+    <script src="~/Mscripts/FontAwesomeJS/all.js"></script>                     
+    <script src="~/Mscripts/FontAwesomeJS/brands.js"></script>
+    
+    <script src="~/Mscripts/FontAwesomeJS/conflict-detection.js"></script>
+    <script src="~/Mscripts/FontAwesomeJS/fontawesome.js"></script>
+    <script src="~/Mscripts/FontAwesomeJS/regular.js"></script>
+    <script src="~/Mscripts/FontAwesomeJS/solid.js"></script>
+    <script src="~/Mscripts/FontAwesomeJS/v4-shims.js"></script>
+
+
+
+    <style>
+        .custnav {
+            background-color: none;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("EasyZ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    <nav class="navbar navbar-expand-lg navbar-dark  custnav">
+        <div class="container-fluid ">
+            @Html.ActionLink("EasyZ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link active" })
+                        @*<a class="nav-link active" aria-current="page" href="#">Home</a>*@
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
+                        @*<a class="nav-link" href="#">Features</a>*@
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
+                        @*<a class="nav-link" href="#">Pricing</a>*@
+                    </li>
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+
+
+
+
+        <div class="Loader" style="left:40%;top:40%;position:fixed; z-index:1111;">
+            
+            <img src="~/Gif/loading-waiting.gif" style="width:50%;height:50%" />
+        </div>
+
+
+
+
+            <hr />
+            <footer class="foot">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+   
+    <script src="~/Mscripts/Layout.js"></script>
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

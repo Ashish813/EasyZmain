@@ -1,0 +1,115 @@
+﻿@model EasyZ.Models.UserDetail
+@{
+    ViewBag.Title = "ResumeProcess4";
+}
+
+
+<link href="~/css/resumeprocess.css" rel="stylesheet" />
+<link href="~/css/ResumeProcess2.css" rel="stylesheet" />
+<link href="~/css/ResumeProcess4.css" rel="stylesheet" />
+<div ng-controller="ResumeProcess4Controller" id="RP4">
+    @using (Html.BeginForm("DownloadResume", "ResumeProcess", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container d-flex flex-column align-items-center justify-content-xxl-evenly  mt-3 allformcon">
+            <div class="formfour" id="f4">
+
+
+                @{
+                    foreach (var qnsobj in ViewBag.Qbyrid_list)
+                    {
+
+                        switch (qnsobj.Qid)
+                        {
+
+                            case 23:
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <div class="pappsign" ng-click="addfunc(skvalue)"><i class="fa fa-plus-circle  fa-2x  point" ></i></div>
+                                <input type="text" ng-model="skvalue" id="23" placeholder="Max @ViewBag.Resume_Detail.skillcountmax skills" class="form-control trans" />
+                                <span ng-if="skillsarray.length<=@ViewBag.Resume_Detail.skillcountmax && skillsarray.length >0" class="Infoclass">{{@ViewBag.Resume_Detail.skillcountmax-skillsarray.length}} Left</span>
+                                <span ng-if="skillsarray.length>@ViewBag.Resume_Detail.skillcountmax" class="Errorclass">Limit Exceeds</span>
+                                <span  ng-if="skillsarray.length==0 && submitvar==true" class="Errorclass">!Add Atleast One</span>
+                                <div class="Outershowdiv"><div class="Innershowdiv" ng-repeat="x in skillsarray track by $index">{{x}}<span class="deliconspan" ng-click="skillsarray.splice($index, 1)"><i class="fa fa-delete-left delicon"></i></span></div></div>
+                                <input ng-repeat="x in skillsarray track by $index" type="hidden" name="skills[{{$index}}]" value="{{skillsarray[$index]}}" />
+
+                                break;
+                            case 24:
+
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <div class="pappsign" ng-click="addCfunc(certivalue)"><i class="fa fa-plus-circle  fa-2x point" ></i></div>
+                                <input type="text" ng-model="certivalue" id="24" class="form-control trans" placeholder="Max @ViewBag.Resume_Detail.certicountmax Certifications" />
+                                <span ng-if="certiarray.length<=@ViewBag.Resume_Detail.certicountmax && certiarray.length >0" class="Infoclass">{{@ViewBag.Resume_Detail.certicountmax-certiarray.length}} Left</span>
+                                <span ng-if="certiarray.length>@ViewBag.Resume_Detail.certicountmax" class="Errorclass">Limit Exceeds</span>
+                                <span ng-if="certiarray.length==0 && submitvar==true" class="Errorclass">!Add Atleast One</span>
+                                <div class="Outershowdiv"><div class="Innershowdiv" ng-repeat="x in certiarray track by $index">{{x}}<span class="deliconspan" ng-click="certiarray.splice($index, 1)"><i class="fa fa-delete-left delicon"></i></span></div></div>
+                                <input ng-repeat="x in certiarray track by $index" type="hidden" name="certifications[{{$index}}]" value="{{certiarray[$index]}}" />
+
+                                break;
+                            case 25:
+
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <div class="pappsign" ng-click="addLfunc(langvalue)"><i class="fa fa-plus-circle  fa-2x point"></i></div>
+                                <input type="text" ng-model="langvalue" id="25" class="form-control trans" placeholder="Max @ViewBag.Resume_Detail.langcountmax Languages" />
+                                <span ng-if="langarray.length<=@ViewBag.Resume_Detail.langcountmax && langarray.length >0" class="Infoclass">{{@ViewBag.Resume_Detail.langcountmax-langarray.length}} Left</span>
+                                <span ng-if="langarray.length>@ViewBag.Resume_Detail.langcountmax" class="Errorclass">Limit Exceeds</span>
+                                <span ng-if="langarray.length==0 && submitvar==true" class="Errorclass">!Add Atleast One</span>
+                                <div class="Outershowdiv"><div class="Innershowdiv" ng-repeat="x in langarray track by $index">{{x}}<span class="deliconspan" ng-click="langarray.splice($index, 1)"><i class="fa fa-delete-left delicon"></i></span></div></div>
+                                <input ng-repeat="x in langarray track by $index" type="hidden" name="languages[{{$index}}]" value="{{langarray[$index]}}" />
+                                break;
+                            case 26:
+
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <div class="pappsign" ng-click="addHfunc(hobbvalue)"><i class="fa fa-plus-circle  fa-2x point"></i></div>
+                                <input type="text" ng-model="hobbvalue" id="26" class="form-control trans" placeholder="Max @ViewBag.Resume_Detail.Hobbcountmax Hobbies" />
+                                <span ng-if="hobbarray.length<=@ViewBag.Resume_Detail.Hobbcountmax && hobbarray.length >0" class="Infoclass">{{@ViewBag.Resume_Detail.Hobbcountmax-hobbarray.length}} Left</span>
+                                <span ng-if="hobbarray.length>@ViewBag.Resume_Detail.Hobbcountmax" class="Errorclass">Limit Exceeds</span>
+                                <span ng-if="hobbarray.length==0 && submitvar==true" class="Errorclass">!Add Atleast One</span>
+                                <div class="Outershowdiv"><div class="Innershowdiv" ng-repeat="x in hobbarray track by $index">{{x}}<span class="deliconspan" ng-click="hobbarray.splice($index, 1)"><i class="fa fa-delete-left delicon"></i></span></div></div>
+                                <input ng-repeat="x in hobbarray track by $index" type="hidden" name="hobbies[{{$index}}]" value="{{hobbarray[$index]}}" />
+
+
+                                break;
+                            case 27:
+
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <input type="file" name=" " id="27" class="form-control trans" placeholder="" required />
+
+                                break;
+
+
+
+                            default:
+
+                                break;
+
+                        }
+                    }
+                }
+
+
+                @*<input type="text" name="InternList[0].role" placeholder="roleee" />
+        <input type="text" name="InternList[0].Timespan" placeholder="timespan" />
+
+        <input type="text" name="InternList[0].CompanyName" placeholder="Comapnynameee" />*@
+
+
+
+
+
+
+
+
+            </div>
+            <h3 ng-bind="checkk"></h3>
+            <div class="col-md-8 offset-md-2 mb-2 index">
+
+                <input type="submit" id="submitbtt" class="btn btn-lg btn-success form-control"    ng-click="submitvar==false?submitvar=true:submitvar=true"/>
+
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+<script src="~/Mscripts/ResumeProcess4.js"></script>

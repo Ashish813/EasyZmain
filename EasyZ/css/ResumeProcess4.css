@@ -1,0 +1,70 @@
+﻿body {
+
+}
+.formfour {
+    position:relative;
+    width: 100%;
+    overflow: auto;
+
+}
+
+
+.pappsign {
+    position: absolute;
+    display: flex;
+    z-index: 11;
+    margin-left: 95%;
+  
+    width: 5%;
+    height: 10%;
+    margin-top:-10px;
+    justify-content:center;
+    align-items:center;
+}
+.point{
+
+    cursor:pointer;
+    color:green;
+}
+
+.Outershowdiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+.Innershowdiv {
+    position: relative;
+    display: flex;
+    width: auto;
+    font-size: 20px;
+    color: black;
+    background-color: lightcyan;
+    border-radius: 30px; 
+    margin: 5px auto;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.delicon{
+    color:black;
+    margin:auto 8px;
+    
+}
+
+.deliconspan{
+    cursor:pointer;
+
+}
+
+.Errorclass {
+    color: red;
+    font-weight:bolder;
+}
+
+.Infoclass {
+    color: lightgreen;
+    font-weight:bolder;
+}
+
+

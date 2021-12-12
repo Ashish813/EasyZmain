@@ -1,0 +1,285 @@
+﻿@model EasyZ.Models.UserDetail
+@{
+    ViewBag.Title = "ResumeProcess3";
+}
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+    }
+
+    input::-webkit-input-placeholder {
+        -webkit-text-fill-color: rgb(113, 113, 128);
+    }
+
+    .Errorclass {
+        color: red;
+        font-weight: bolder;
+    }
+    .Infoclass {
+        color: lightgreen;
+        font-weight: bolder;
+    }
+
+    .colorr{
+        background-color:red;
+    }
+</style>
+
+
+
+<link href="~/css/resumeprocess.css" rel="stylesheet" />
+<link href="~/css/ResumeProcess2.css" rel="stylesheet" />
+<div ng-controller="ResumeProcess3Controller" id="RP3">
+    @using (Html.BeginForm("ResumeProcess4", "ResumeProcess", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container d-flex flex-column align-items-center justify-content-xxl-evenly  mt-3 allformcon">
+            <div class="formthree" id="f3">
+
+
+                @{
+                    foreach (var qnsobj in ViewBag.Qbyrid_list)
+                    {
+
+                        switch (qnsobj.Qid)
+                        {
+
+                            case 7:
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label><i class="fa fa-check-double fa-3x" aria-hidden="true"></i>
+                                <input type="text" name="intro" ng-model="introA" id="7" placeholder="@ViewBag.Resume_Detail.introlenmin-@ViewBag.Resume_Detail.introlenmax character" class="form-control trans" />
+                                <span ng-if="introA.length<@ViewBag.Resume_Detail.introlenmin" class="Errorclass">Need {{@ViewBag.Resume_Detail.introlenmin-introA.length}} more</span>
+                                <span ng-if="introA.length>@ViewBag.Resume_Detail.introlenmax" class="Errorclass">Limit Exceeds</span>
+
+
+                                break;
+                            case 8:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="tenthP" id="8" ng-model="tenp" ng-keyup="numericonly(tenp,8)" maxlength="5" class="form-control trans" placeholder="%/CGPA" only-digits>
+                                    <div id="8E" class="perc"></div>
+                              
+                                   
+
+                                }
+                                break;
+                            case 9:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="number" name="tenthY" id="9" class="form-control trans" placeholder="format:YYYY" />
+                                }
+                                break;
+                            case 10:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="tenthB" id="10" class="form-control trans" placeholder="Eg:CBSE" />
+                                }
+
+                                break;
+                            case 11:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="twelthP" id="11" ng-model="twelp" ng-keyup="numericonly(twelp,11)" maxlength="5" class="form-control trans" placeholder="%/CGPA" />
+
+                                    <div id="11E" class="perc"></div>
+                                       
+
+                                    
+                                }
+                                break;
+                            case 12:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="number" name="twelthY" id="12" class="form-control trans" placeholder="format:YYYY" />
+                                }
+                                break;
+
+                            case 13:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="twelthB" id="13" class="form-control trans" placeholder="Eg:CBSE" />
+                                }
+                                break;
+
+                            case 14:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="GP" id="14" ng-model="Gradp" ng-keyup="numericonly(Gradp,14)" maxlength="5" class="form-control trans" placeholder="%/GPA" />
+                                    <div id="14E" class="perc"></div>
+
+
+                                }
+                                break;
+
+                            case 15:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="number" name="GY" id="15" class="form-control trans" placeholder="format:YYYY" />
+                                }
+                                break;
+
+                            case 16:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="GU" id="16" class="form-control trans" placeholder="Eg:DU" />
+                                }
+                                break;
+                            case 17:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+
+                                    <input type="text" name="PGP" id="17" ng-model="Postp" ng-keyup="numericonly(Postp,17)" maxlength="5" class="form-control trans" placeholder="Eg:83.20" />
+
+                                    <div id="17E" class="perc"></div>
+                                }
+                                break;
+
+                            case 18:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="number" name="PGY" id="18" class="form-control trans" placeholder="Eg:YYYY" />
+                                }
+                                break;
+                            case 19:
+                                if (qnsobj.EduId <= ViewBag.Highed_id)
+                                {
+                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                    <input type="text" name="PGU" id="19" class="form-control trans" placeholder="Eg:DU" />
+                                }
+                                break;
+
+                            case 20:
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <input type="text" name="DescHighEdu" id="20" class="form-control trans" placeholder="NAN" />
+                                break;
+                            case 21:
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <input type="number" name="InternshipCount" id="21" onkeyup="Icountinput()" class="form-control trans" ng-model="Icountval" placeholder="Max @ViewBag.Resume_Detail.interncountmax" ng-change="Icountval>@ViewBag.Resume_Detail.interncountmax?IcSetting(@ViewBag.Resume_Detail.interncountmax):''" />
+                                <div class="internqns">
+
+                                    @if (qnsobj.subqnslist.Count != 0)
+                                    {
+                                        int i = 0;
+                                        foreach (string subqns in qnsobj.subqnslist)
+                                        {
+                                            switch (i)
+                                            {
+                                                case 0:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="text" name="" class="form-control trans intPOS" />
+                                                    break;
+
+                                                case 1:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="text" name="" class="form-control trans intTS" />
+                                                    break;
+                                                case 2:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="text" name="" class="form-control trans intCN" />
+                                                    break;
+                                                default:
+                                                    break;
+
+                                            }
+
+
+                                            i++;
+                                        }
+                                    }
+                                </div>
+                                break;
+                            case 22:
+                                <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@qnsobj.QuestionText</label>
+                                <input type="number" name="ProjectCount" id="22" onkeyup="Pcountinput()" class="form-control trans" ng-model="Pcountval" placeholder="Max @ViewBag.Resume_Detail.projectcountmax" ng-change="Pcountval>@ViewBag.Resume_Detail.projectcountmax?PcSetting(@ViewBag.Resume_Detail.projectcountmax):''" />
+                                <div class="projectqns">
+                                    @if (qnsobj.subqnslist.Count != 0)
+                                    {
+                                        int j = 0;
+                                        foreach (string subqns in qnsobj.subqnslist)
+                                        {
+                                            switch (j)
+                                            {
+                                                case 0:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="text" name="" class="form-control trans Ptitle" placeholder="" />
+                                                    break;
+
+                                                case 1:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="number" name="" class="form-control trans PMembers" placeholder="" />
+                                                    break;
+                                                case 2:
+                                                    <label class="col-md-12  mb-2 fw-bold fs-5 index form-label" for="">@subqns</label>
+                                                    <input type="text" name="" class="form-control trans Pproject_description" placeholder="Max @ViewBag.Resume_Detail.projectDescmaxlen" id="@ViewBag.Resume_Detail.projectDescmaxlen" maxlenn="@ViewBag.Resume_Detail.projectDescmaxlen" onkeyup="checkfunc(this,0,@ViewBag.Resume_Detail.projectDescmaxlen)" />
+                                                    <span class="Infoclass"></span>
+                                                    <span class="Errorclass"></span>
+                                                    @*<span class="Infoclass" ng-show="pdescval.length <=@ViewBag.Resume_Detail.projectDescmaxlen">{{@ViewBag.Resume_Detail.projectDescmaxlen-pdescval.length}} Left</span>
+                                            <span class="Errorclass" ng-show="pdescval.length >@ViewBag.Resume_Detail.projectDescmaxlen">Limit Exceeds</span>*@
+                                                    break;
+                                                default:
+                                                    break;
+
+                                            }
+                                            j++;
+
+
+
+
+                                        }
+                                    }
+                                </div>
+                                break;
+
+                            default:
+
+                                break;
+
+                        }
+                    }
+                }
+
+
+                @*<input type="text" name="InternList[0].role" placeholder="roleee" />
+        <input type="text" name="InternList[0].Timespan" placeholder="timespan" />
+
+        <input type="text" name="InternList[0].CompanyName" placeholder="Comapnynameee" />*@
+
+
+
+
+                <w3-test-directive></w3-test-directive>
+                <h1 ng-bind="varr"></h1>
+                <input type="text" ng-model="varr" />
+
+                @*</div>*@
+                <div id="test"></div>
+
+
+
+            </div>
+
+            <div class="col-md-8 offset-md-2 mb-2 index">
+
+                <input type="submit"   id="submitbt" class="btn btn-lg btn-success form-control " />
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<script src="~/Mscripts/ResumeProcess3.js"></script>
+
+

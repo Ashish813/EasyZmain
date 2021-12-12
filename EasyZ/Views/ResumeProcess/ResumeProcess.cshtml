@@ -1,0 +1,203 @@
+﻿@model EasyZ.Models.UserDetail
+@{
+    ViewBag.Title = "ResumeProcess";
+}
+<link href="~/css/resumeprocess.css" rel="stylesheet" />
+<div ng-controller="ResumeProcessController"  id="RP">
+    @{
+        foreach (var obj in ViewBag.qns)
+        {
+
+            switch (obj.Qid)
+            {
+                case 1:
+                    <span ng-init="Name='@obj.QuestionText'"></span>
+                    break;
+                case 2:
+                    <span ng-init="Contact='@obj.QuestionText'"></span>
+                    break;
+                case 3:
+                    <span ng-init="City='@obj.QuestionText'"></span>
+                    break;
+                case 4:
+                    <span ng-init="Email='@obj.QuestionText'"></span>
+                    break;
+                case 5:
+                    <span ng-init="Rtype='@obj.QuestionText'"></span>
+                    break;
+                case 6:
+                    <span ng-init="leveled='@obj.QuestionText'"></span>
+                    break;
+                default:
+                    break;
+
+            }
+
+        }
+    }
+
+
+    @using (Html.BeginForm("ResumeProcess2", "ResumeProcess", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="container d-flex flex-column align-items-center justify-content-xxl-evenly  mt-3 allformcon">
+
+
+    <div class="row mt-2 formone">
+
+        <p class="fw-bold fst-italic col-md-4 offset-md-4 index" style="font-size:60px" id="h1">Details...</p>
+
+
+
+        <label for="Nameid" ng-if="Name!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{Name}}</label>
+        @*@Html.LabelFor(m => m.name, new { @class = "col-md-12  mb-2 fw-bold fs-5 index" })*@
+        <div ng-if="Name!=''" class="col-md-12   mb-2 index">
+            @Html.TextBoxFor(m => m.name, new { @class = "form-control  trans", placeholder = "Enter your Name here", id = "Nameid" })
+            @Html.ValidationMessageFor(m => m.name, "", new { @class = "text-danger" })
+        </div>
+
+
+
+        <label for="numberid" ng-if="Contact!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{Contact}}</label>
+        <div ng-if="Contact!=''" class="col-md-12  mb-2 index">
+            @Html.TextBoxFor(m => m.number, new { @class = "form-control  trans", placeholder = "Enter Your Number", id = "numberid" })
+            @Html.ValidationMessageFor(m => m.number, "", new { @class = "text-danger" })
+        </div>
+
+
+
+        <label for="emailid" ng-if="Email!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{Email}}</label>
+        <div ng-if="Email!=''" class="col-md-12  mb-2 index">
+            @Html.TextBoxFor(m => m.email, new { @class = "form-control  trans", placeholder = "Enter your Email", id = "emailid" })
+            @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+        </div>
+
+
+
+        <label for="Cityid" ng-if="City!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{City}}</label>
+        <div ng-if="City!=''" class="col-md-12  mb-2 index">
+            @Html.TextBoxFor(m => m.city, new { @class = "form-control trans", placeholder = " eg:New Delhi", id = "Cityid" })
+            @Html.ValidationMessageFor(m => m.city, "", new { @class = "text-danger" })
+        </div>
+
+
+        <label for="" ng-if="Rtype!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{Rtype}}</label>
+
+        <div ng-if="Rtype!=''" class=" col-5   col-sm-6 col-md-4 fw-bold fs-5  mb-3  index">
+            <span>Fresher </span> @Html.RadioButtonFor(m => m.ExpStatus, "1", new { @class = "form-check-input mradio  expsR fs-6 mt-2", @checked = "true" })
+        </div>
+        <div ng-if="Rtype!=''" class="col-7  col-sm-6  col-md-4 offset-md-4 mb-3  fw-bold fs-5  index">
+            <span>Experienced </span> @Html.RadioButtonFor(m => m.ExpStatus, "2", new { @class = "form-check-input  mradio  expsr fs-6 mt-2" })
+        </div>
+
+
+        <label for="" ng-if="leveled!=''" class="col-md-12  mb-2 fw-bold fs-5 index form-label">{{leveled}}</label>
+        @{
+
+            foreach (var eduobj in ViewBag.eduoption)
+            {
+                <div ng-if="leveled!=''" class=" col-6     col-sm-4 col-lg-4 fw-bold fs-6  mb-3  index">
+                    <span>@eduobj.eduname </span><input class="form-check-input mradio  eduR" type="radio" name="Highestlev" value="@eduobj.eduid" checked>
+                    @*@Html.RadioButtonFor(m => m.Highestlev, "", new { @class = "form-check-input  fs-6 mt-2", ng - value = "adssadsad" })*@
+                </div>
+
+            }
+
+        }
+
+
+        @*@{
+                for (int i = 0; i < 5; i++)
+                {
+
+                    @Html.TextBoxFor(m => m.InternList[i].role, new { @class = "form-control trans", placeholder = " roleee" })
+                    @Html.TextBoxFor(m => m.InternList[i].Timespan, new { @class = "form-control trans", placeholder = " Timespan" })
+                    @Html.TextBoxFor(m => m.InternList[i].CompanyName, new { @class = "form-control trans", placeholder = " CompanyName" })
+
+                }
+
+            }*@
+
+
+
+
+    </div>
+
+    <h2 ng-bind="varr"></h2>
+    
+
+    <div class="formtwo">
+
+
+
+
+    </div>
+    <div class="formthree" ng-bind-html="Html" id="f3">
+
+    </div>
+
+    <div   class="formfour">
+        @*@{@Html.Action("ThirdPage", "ResumeProcess",new { expid=1, Maxeduid=2, resumeid=1});}*@
+    </div>
+
+
+
+    <div class="col-md-8 offset-md-2 mb-2 index">
+
+        <input type="submit" class="btn btn-lg btn-success form-control " />
+
+    </div>
+    <div class="row w-100  " id="prevnext">
+
+        <button type="button" class="col-md-5  btn-outline btn-lg fw-bold  border-3  border-success mb-2 index" id="prevbid">Prev</button>
+        <button type="button" class="col-md-5 offset-md-2   btn-outline btn-lg fw-bold  border-3  border-success mb-2 index" id="nextbid" ng-click="changepage()">Next</button>
+
+    </div>
+
+
+
+</div>
+
+
+
+    }
+  
+    @*<h1 ng-bind="username"></h1>
+        <h2 ng-click="func()">click here</h2>
+        <button class="btn btn-success" ng-click="func()" id="AngularAjax">AngularAjax</button>*@
+</div>
+
+
+<script>
+
+    //var arr = [];
+
+    //var obj1 = {
+    //    role:"sadsad1",
+    //    Timespan:"dsadasdsa1",
+    //    CompanyName:"Cname1"
+    //}
+
+    //var obj2 = {
+    //    role: "sadsad2",
+    //    Timespan: "dsadasdsa2",
+    //    CompanyName: "Cname2"
+    //}
+
+    //var obj3 = {
+    //    role: "sadsad",
+    //    Timespan: "dsadasdsa",
+    //    CompanyName: "Cname"
+    //}
+
+    //arr[0] = obj1;
+    //arr[1] = obj2;
+    //arr[2] = obj3;
+
+    //console.log(arr);
+    //$("#IntList").val(arr);
+
+
+</script>
+
+<script src="~/Mscripts/resumeprocess.js"></script>

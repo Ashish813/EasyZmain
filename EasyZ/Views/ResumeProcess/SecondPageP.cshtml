@@ -1,0 +1,51 @@
+﻿@model List<EasyZ.Models.Rinfo>
+
+
+<link href="~/css/SecondPageP.css" rel="stylesheet" />
+
+@*@{
+        foreach(var ob in Model)
+        {
+            <h1>@ob.resumeid</h1>
+            <h2>@ob.rsnap</h2>
+
+        }
+    }*@
+<div class="innerformtwo">
+
+    @{
+        for (int i = 0; i < 10; i++)
+        {
+            foreach (var ob in Model)
+            {
+
+
+                @*<img src="~/Images/resume1-bg.jpg" rid="@ob.resumeid" class="w-50 h-50" />*@
+                <img src="@Url.Content(ob.rsnap)" rid="@ob.resumeid" onclick="SelectR(@ob.resumeid)" class="rimg" />
+
+
+
+            }
+
+        }
+    }
+
+    @*@Html.TextBoxFor(m => m.Rselectid, new { @class = "form-control", id = "Ridtextbox" })*@
+    <input type="hidden" name="Rselectid" class = "form-control", id = "Ridtextbox" />
+
+    <h1 ng-bind="varr">{{varr}}</h1>
+
+
+
+</div>
+
+
+
+
+
+<script>
+    function SelectR(Rid) {
+        console.log("select r runining");
+        $("#Ridtextbox").val(Rid);
+    }
+</script>

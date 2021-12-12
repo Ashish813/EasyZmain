@@ -1,0 +1,17 @@
+﻿body {
+}
+
+.innerformtwo {
+    display: flex;
+    height: 60vh;
+    flex-wrap: wrap;
+    /* justify-content:space-evenly;*/
+}
+
+
+.rimg {
+    width: 30%;
+    height: 50%;
+    margin: 1% 1.5%;
+    cursor: pointer;
+}
